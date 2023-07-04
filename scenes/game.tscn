@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqmodmcrcjmtx"]
+
+[ext_resource type="PackedScene" uid="uid://bpfhuboflpppm" path="res://scenes/snake.tscn" id="1_rgq6v"]
+[ext_resource type="Texture2D" uid="uid://cop4nc5401pbh" path="res://assets/snake-wall.png" id="2_3ohrj"]
+[ext_resource type="Script" path="res://scenes/walls.gd" id="2_xvao8"]
+
+[node name="Game" type="Node2D"]
+
+[node name="snake" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("1_rgq6v")]
+walls = NodePath("../Walls")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Walls" type="Node" parent="."]
+script = ExtResource("2_xvao8")
+
+[node name="top_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, -320)
+scale = Vector2(128, 1)
+texture = ExtResource("2_3ohrj")
+
+[node name="bottom_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(0, 320)
+scale = Vector2(128, 1)
+texture = ExtResource("2_3ohrj")
+
+[node name="left_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(-640, 0)
+rotation = 1.5708
+scale = Vector2(69.54, 0.993)
+texture = ExtResource("2_3ohrj")
+
+[node name="right_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
+position = Vector2(640, 0)
+rotation = 1.5708
+scale = Vector2(69.54, 0.993)
+texture = ExtResource("2_3ohrj")
