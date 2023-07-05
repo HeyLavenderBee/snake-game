@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8a17oj43fwja"]
+
+[ext_resource type="Texture2D" uid="uid://cqagkdcm2r0jw" path="res://assets/snake-food-sprite.png" id="1_pcnim"]
+
+[node name="Food" type="Sprite2D"]
+texture = ExtResource("1_pcnim")
