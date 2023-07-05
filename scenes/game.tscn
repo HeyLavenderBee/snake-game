@@ -1,37 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqmodmcrcjmtx"]
+[gd_scene load_steps=7 format=3 uid="uid://dqmodmcrcjmtx"]
 
 [ext_resource type="PackedScene" uid="uid://bpfhuboflpppm" path="res://scenes/snake.tscn" id="1_rgq6v"]
 [ext_resource type="Texture2D" uid="uid://cop4nc5401pbh" path="res://assets/snake-wall.png" id="2_3ohrj"]
 [ext_resource type="Script" path="res://scenes/walls.gd" id="2_xvao8"]
+[ext_resource type="PackedScene" uid="uid://dwvjyyruedeyf" path="res://scenes/food_spawner.tscn" id="4_4l6pv"]
+[ext_resource type="PackedScene" uid="uid://8a17oj43fwja" path="res://scenes/food.tscn" id="5_lybth"]
+[ext_resource type="PackedScene" uid="uid://dncd8g1ox7o6v" path="res://scenes/ui_layer.tscn" id="6_fgfut"]
 
 [node name="Game" type="Node2D"]
 
 [node name="snake" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("1_rgq6v")]
 walls = NodePath("../Walls")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Walls" type="Node" parent="."]
 script = ExtResource("2_xvao8")
 
 [node name="top_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
-position = Vector2(0, -320)
-scale = Vector2(128, 1)
+position = Vector2(0, -224)
+scale = Vector2(42.2, 1)
 texture = ExtResource("2_3ohrj")
 
 [node name="bottom_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
-position = Vector2(0, 320)
-scale = Vector2(128, 1)
+position = Vector2(0, 224)
+scale = Vector2(42.2, 1)
 texture = ExtResource("2_3ohrj")
 
 [node name="left_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
-position = Vector2(-640, 0)
+position = Vector2(-288, 0)
 rotation = 1.5708
-scale = Vector2(69.54, 0.993)
+scale = Vector2(32, 1)
 texture = ExtResource("2_3ohrj")
 
 [node name="right_wall" type="Sprite2D" parent="Walls" groups=["walls"]]
-position = Vector2(640, 0)
+position = Vector2(288, 0)
 rotation = 1.5708
-scale = Vector2(69.54, 0.993)
+scale = Vector2(32, 1)
 texture = ExtResource("2_3ohrj")
+
+[node name="Food_Spawner" parent="." node_paths=PackedStringArray("walls") groups=["food_spawner"] instance=ExtResource("4_4l6pv")]
+walls = NodePath("../Walls")
+food_scene = ExtResource("5_lybth")
+
+[node name="UILayer" parent="." instance=ExtResource("6_fgfut")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -300
+limit_top = -390
+limit_right = 300
+limit_bottom = 300
