@@ -13,6 +13,10 @@ enum CollisionDirection{
 signal on_points_scored(points: int)
 signal on_game_over
 
+var volume = global.volume - 4
+@onready var sfx_1 = $"../sfx_1"
+@onready var sfx_2 = $"../sfx_2"
+
 var points = 0
 
 @export var walls: Walls
@@ -60,6 +64,7 @@ func on_timeout():
 		move_to_position(position_after_wall_collision)
 
 	if new_head_position == food_spawner.food_position:
+		sfx_1.play()
 		points += 1
 		on_points_scored.emit(points)
 		food_spawner.destroy_food()
@@ -68,6 +73,7 @@ func on_timeout():
 		
 	var snake_collision = check_snake_collision(new_head_position)
 	if snake_collision:
+		sfx_2.play()
 		timer.stop()
 		on_game_over.emit()
 	
@@ -116,3 +122,8 @@ func check_snake_collision(new_head_position):
 	if body_parts_not_head.filter(func (part): return part.position == position):
 		return true
 	return false
+
+func _physics_process(delta):
+	print(volume)
+	sfx_1.set_volume_db(volume)
+

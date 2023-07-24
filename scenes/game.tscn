@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqmodmcrcjmtx"]
+[gd_scene load_steps=9 format=3 uid="uid://dqmodmcrcjmtx"]
 
 [ext_resource type="PackedScene" uid="uid://bpfhuboflpppm" path="res://scenes/snake.tscn" id="1_rgq6v"]
 [ext_resource type="Texture2D" uid="uid://cop4nc5401pbh" path="res://assets/snake-wall.png" id="2_3ohrj"]
 [ext_resource type="Script" path="res://scenes/walls.gd" id="2_xvao8"]
 [ext_resource type="PackedScene" uid="uid://dwvjyyruedeyf" path="res://scenes/food_spawner.tscn" id="4_4l6pv"]
 [ext_resource type="PackedScene" uid="uid://8a17oj43fwja" path="res://scenes/food.tscn" id="5_lybth"]
-[ext_resource type="PackedScene" uid="uid://dncd8g1ox7o6v" path="res://scenes/ui_layer.tscn" id="6_fgfut"]
+[ext_resource type="PackedScene" uid="uid://b206o1jj7cypg" path="res://scenes/ui_layer.tscn" id="6_fgfut"]
+[ext_resource type="AudioStream" uid="uid://dev00rrdhfnrl" path="res://sfx/mixkit-small-hit-in-a-game-2072.wav" id="7_yp7vd"]
+[ext_resource type="AudioStream" uid="uid://dvstey8iqmhhs" path="res://sfx/mixkit-negative-guitar-tone-2324.wav" id="8_80psh"]
 
 [node name="Game" type="Node2D"]
+visible = false
 
 [node name="snake" parent="." node_paths=PackedStringArray("walls") instance=ExtResource("1_rgq6v")]
 walls = NodePath("../Walls")
@@ -48,3 +51,11 @@ limit_left = -300
 limit_top = -390
 limit_right = 300
 limit_bottom = 300
+
+[node name="sfx_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_yp7vd")
+
+[node name="sfx_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_80psh")
+
+[connection signal="finished" from="sfx_1" to="snake" method="_on_sfx_1_finished"]

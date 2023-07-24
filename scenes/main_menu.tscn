@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3 uid="uid://dim7pucwdo4rx"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_2yjw0"]
+[ext_resource type="FontFile" uid="uid://ce8f1rfiu3ipe" path="res://assets/Pixeled.ttf" id="1_4p1ed"]
+[ext_resource type="AudioStream" uid="uid://cl21cv0asa722" path="res://sfx/mixkit-video-game-retro-click-237.wav" id="3_kisrw"]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_2yjw0")
+
+[node name="title_container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 302.0
+offset_top = 86.0
+offset_right = 302.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="title_container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_right = 105.5
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_4p1ed")
+theme_override_font_sizes/font_size = 22
+text = "SNAKE GAME"
+
+[node name="play_control" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(170, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 237.0
+offset_top = 254.0
+offset_right = 363.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="start_button" type="Button" parent="play_control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4p1ed")
+theme_override_font_sizes/font_size = 17
+text = "START"
+
+[node name="settings_button" type="Button" parent="play_control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4p1ed")
+theme_override_font_sizes/font_size = 17
+text = "SETTINGS"
+
+[node name="quit_button" type="Button" parent="play_control"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4p1ed")
+theme_override_font_sizes/font_size = 17
+text = "QUIT"
+
+[node name="start_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kisrw")
+
+[node name="start_sfx2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kisrw")
+
+[node name="start_sfx3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kisrw")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 537.0
+offset_top = 531.0
+offset_right = 595.0
+offset_bottom = 562.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_4p1ed")
+theme_override_font_sizes/font_size = 10
+text = "v0.1.0.0"
+
+[connection signal="pressed" from="play_control/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="play_control/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="play_control/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="finished" from="start_sfx" to="." method="_on_start_sfx_finished"]
+[connection signal="finished" from="start_sfx2" to="." method="_on_start_sfx_2_finished"]
+[connection signal="finished" from="start_sfx3" to="." method="_on_start_sfx_3_finished"]

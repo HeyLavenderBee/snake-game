@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3 uid="uid://b340autqse1gf"]
+
+[ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_rg6wk"]
+[ext_resource type="FontFile" uid="uid://ce8f1rfiu3ipe" path="res://assets/Pixeled.ttf" id="2_3fy7b"]
+[ext_resource type="AudioStream" uid="uid://cl21cv0asa722" path="res://sfx/mixkit-video-game-retro-click-237.wav" id="3_qxw4n"]
+
+[node name="settings_menu" type="Node2D"]
+script = ExtResource("1_rg6wk")
+
+[node name="bg_color_button" type="Button" parent="."]
+offset_left = 217.0
+offset_top = 345.0
+offset_right = 288.0
+offset_bottom = 388.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 12
+text = "BG"
+
+[node name="text_button" type="Button" parent="."]
+offset_left = 304.0
+offset_top = 345.0
+offset_right = 375.0
+offset_bottom = 388.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 12
+text = "TEXT"
+
+[node name="colors_label" type="Label" parent="."]
+offset_left = 263.0
+offset_top = 294.0
+offset_right = 376.0
+offset_bottom = 332.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 12
+text = "Colors"
+
+[node name="settings_label" type="Label" parent="."]
+offset_left = 241.0
+offset_top = 31.0
+offset_right = 351.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 14
+text = "SETTINGS"
+
+[node name="minus_vol" type="Button" parent="."]
+offset_left = 214.0
+offset_top = 198.0
+offset_right = 285.0
+offset_bottom = 241.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 12
+text = "- 2 dB"
+
+[node name="plus_vol" type="Button" parent="."]
+offset_left = 301.0
+offset_top = 198.0
+offset_right = 372.0
+offset_bottom = 241.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 12
+text = "+ 2 dB"
+
+[node name="sfx_label" type="Label" parent="."]
+offset_left = 235.0
+offset_top = 146.0
+offset_right = 348.0
+offset_bottom = 184.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 12
+text = "Sfx Volume"
+
+[node name="back_button" type="Button" parent="."]
+offset_left = 36.0
+offset_top = 33.0
+offset_right = 88.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 9
+text = "BACK"
+
+[node name="sfx_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qxw4n")
+volume_db = 1.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 306.0
+offset_top = 387.0
+offset_right = 407.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("2_3fy7b")
+theme_override_font_sizes/font_size = 7
+text = "Coming soon"
+
+[connection signal="pressed" from="bg_color_button" to="." method="_on_bg_color_button_pressed"]
+[connection signal="pressed" from="minus_vol" to="." method="_on_minus_vol_pressed"]
+[connection signal="pressed" from="plus_vol" to="." method="_on_plus_vol_pressed"]
+[connection signal="pressed" from="back_button" to="." method="_on_back_button_pressed"]
+[connection signal="finished" from="sfx_1" to="." method="_on_sfx_1_finished"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dncd8g1ox7o6v"]
+[gd_scene load_steps=4 format=3 uid="uid://b206o1jj7cypg"]
 
 [ext_resource type="Script" path="res://scenes/ui_layer.gd" id="1_6gftk"]
+[ext_resource type="FontFile" uid="uid://ce8f1rfiu3ipe" path="res://assets/Pixeled.ttf" id="2_tmevq"]
+[ext_resource type="AudioStream" uid="uid://cl21cv0asa722" path="res://sfx/mixkit-video-game-retro-click-237.wav" id="3_36h3n"]
 
 [node name="UILayer" type="CanvasLayer"]
 script = ExtResource("1_6gftk")
@@ -21,11 +23,21 @@ alignment = 1
 [node name="restart" type="Button" parent="BoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tmevq")
+theme_override_font_sizes/font_size = 10
 text = "Restart"
+
+[node name="main_menu" type="Button" parent="BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tmevq")
+theme_override_font_sizes/font_size = 10
+text = "Main Menu"
 
 [node name="quit" type="Button" parent="BoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tmevq")
+theme_override_font_sizes/font_size = 10
 text = "Quit"
 
 [node name="points_label" type="Label" parent="."]
@@ -34,11 +46,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -33.5
-offset_top = -26.0
-offset_right = 33.5
+offset_left = -296.0
+offset_top = -555.0
+offset_right = -224.0
+offset_bottom = -524.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_tmevq")
+theme_override_font_sizes/font_size = 10
 text = "Points: 0"
 
 [node name="gameover_label" type="Label" parent="."]
@@ -55,9 +70,23 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.592157, 0.286275, 0.380392, 1)
+theme_override_colors/font_color = Color(0.639216, 0.180392, 0.227451, 1)
+theme_override_fonts/font = ExtResource("2_tmevq")
 theme_override_font_sizes/font_size = 50
 text = "GAME OVER"
 
+[node name="sfx_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_36h3n")
+
+[node name="sfx_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_36h3n")
+
+[node name="sfx_3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_36h3n")
+
 [connection signal="pressed" from="BoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="BoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="BoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="finished" from="sfx_1" to="." method="_on_sfx_1_finished"]
+[connection signal="finished" from="sfx_2" to="." method="_on_sfx_2_finished"]
+[connection signal="finished" from="sfx_3" to="." method="_on_sfx_3_finished"]
